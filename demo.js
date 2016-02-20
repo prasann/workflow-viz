@@ -10,7 +10,6 @@ var paper = new joint.dia.Paper({
   restrictTranslate: true
 });
 
-
 function link(source, target) {
   var cell = new joint.shapes.workflow.Link({
     source: {
@@ -24,28 +23,18 @@ function link(source, target) {
   return cell;
 };
 
-function taskCard(taskModel) {
-  var cell = new joint.shapes.workflow.Task({
-    position: {
-      x: taskModel.get('x'),
-      y: taskModel.get('y')
-    },
-    attrs: {
-      '.name': {
-        text: taskModel.get('name')
-      }
-    }
-  });
-  graph.addCell(cell);
-  return cell;
-};
-
 var allTasks = new TaskCollection();
 var tc = allTasks.fetch({
   url: '/data/tasks.json',
   success: function(tasks) {
     tasks.each(function(task) {
-      taskCard(task);
+      task.draw();
     })
   }
 });
+
+$(document).on('click','.card', function(e){
+  var currentClass = $(e.target).attr('class');
+  currentClass += ' ready'
+  $(e.target).attr('class', currentClass);
+})
