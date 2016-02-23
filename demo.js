@@ -1,12 +1,11 @@
 var app = app || {};
-var graph = new joint.dia.Graph();
-
-var paper = new joint.dia.Paper({
+app.graph = new joint.dia.Graph();
+app.paper = new joint.dia.Paper({
   el: $('#paper'),
   width: 800,
   height: 900,
   gridSize: 1,
-  model: graph,
+  model: app.graph,
   perpendicularLinks: true,
   restrictTranslate: true
 });
@@ -21,20 +20,7 @@ function removeClass(className, $element) {
   $element.attr('class', _.without(classes, className).join(" "));
 }
 
-function link(source, target) {
-  var cell = new joint.shapes.workflow.Link({
-    source: {
-      id: source.id
-    },
-    target: {
-      id: target.id
-    }
-  });
-  graph.addCell(cell);
-  return cell;
-};
-
-var tc = app.tasks.fetch({
+app.tasks.fetch({
   url: '/data/tasks.json',
   success: function(tasks) {
     tasks.each(function(task) {
@@ -43,13 +29,13 @@ var tc = app.tasks.fetch({
   }
 });
 
-$(document).on('click', '.card', function(e) {
-  var $source = $('.link-source');
-  if ($source.length > 0) {
-    var $target = $(e.target).closest('.element').attr('model-id');
-    app.link.create($source.closest('.element').attr('model-id'), $target);
-    removeClass('link-source', $source);
+app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
+  if (app.sourceTask) {
+    app.link.create(app.sourceTask.model, cellView.model)
+    removeClass('link-source', $('.link-source'));
+    app.sourceTask = undefined;
   } else {
-    addClass('link-source', $(e.target));
+    addClass('link-source', $(evt.target).closest('.element').find('.card'));
+    app.sourceTask = cellView;
   }
-})
+});

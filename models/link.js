@@ -3,16 +3,16 @@ var app = app || {};
 (function() {
   "use strict";
   var Link = Backbone.Model.extend({
-    create: function(source_id, target_id) {
+    create: function(source, target) {
       var cell = new joint.shapes.workflow.Link({
         source: {
-          id: app.workflow.getDrawnTask(source_id).id
+          id: source.id
         },
         target: {
-          id: app.workflow.getDrawnTask(target_id).id
+          id: target.id
         }
       });
-      graph.addCell(cell);
+      app.graph.addCell(cell);
       return cell;
     }
   });
