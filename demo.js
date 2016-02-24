@@ -5,9 +5,7 @@ app.paper = new joint.dia.Paper({
   width: 800,
   height: 900,
   gridSize: 1,
-  model: app.graph,
-  perpendicularLinks: true,
-  restrictTranslate: true
+  model: app.graph
 });
 
 function addClass(className, $element) {
