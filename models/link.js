@@ -2,8 +2,8 @@
 var app = app || {};
 (function() {
   "use strict";
-  var Link = Backbone.Model.extend({
-    create: function(source, target) {
+  app.LinkModel = Backbone.Model.extend({
+    draw: function(source, target) {
       var cell = new joint.shapes.workflow.Link({
         source: {
           id: source.id
@@ -16,5 +16,5 @@ var app = app || {};
       return cell;
     }
   });
-  app.link = new Link();
+  app.link = new app.LinkModel();
 })();

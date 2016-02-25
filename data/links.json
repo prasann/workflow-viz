@@ -1,0 +1,17 @@
+[{
+  "source": 1,
+  "target": 2,
+  "lead_time": 0
+}, {
+  "source": 1,
+  "target": 3,
+  "lead_time": 0
+},{
+  "source": 2,
+  "target": 4,
+  "lead_time": 0
+}, {
+  "source": 3,
+  "target": 4,
+  "lead_time": 0
+}]

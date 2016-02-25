@@ -18,14 +18,20 @@ function removeClass(className, $element) {
   $element.attr('class', _.without(classes, className).join(" "));
 }
 
-app.tasks.fetch({
-  url: '/data/tasks.json',
-  success: function(tasks) {
-    tasks.each(function(task) {
-      task.draw();
-    })
+app.links.fetch({
+  url: '/data/links.json',
+  success: function(links) {
+    app.workflow.set('dbLinks', links);
+    app.tasks.fetch({
+      url: '/data/tasks.json',
+      success: function(tasks) {
+        app.workflow.set('dbTasks', tasks);
+        app.workflow.draw();
+      }
+    });
   }
 });
+
 
 app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
   if (app.sourceTask) {

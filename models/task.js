@@ -17,7 +17,7 @@ var app = app || {};
         }
       });
       app.graph.addCell(cell);
-      app.workflow.setDrawnTask(cell);
+      this.set('drawnTask', cell);
       return cell;
     }
   });

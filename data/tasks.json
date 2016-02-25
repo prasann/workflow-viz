@@ -1,21 +1,25 @@
 [{
   "x": 300,
   "y": 50,
-  "name": "Stylesheet",
+  "name": "Task1",
+  "task_id": 1,
   "turn_around_time": 0
 }, {
   "x": 150,
   "y": 150,
   "name": "Task2",
+  "task_id": 2,
   "turn_around_time": 0
 }, {
   "x": 450,
   "y": 150,
   "name": "Task3",
+  "task_id": 3,
   "turn_around_time": 0
 }, {
   "x": 300,
   "y": 250,
   "name": "Task4",
+  "task_id": 4,
   "turn_around_time": 0
 }]
