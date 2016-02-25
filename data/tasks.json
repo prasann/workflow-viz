@@ -7,22 +7,22 @@
   "turn_around_time": 0
 }, {
   "x": 150,
-  "y": 150,
+  "y": 250,
   "name": "Draft Index Review",
   "reviewer_role": "Volume Editor",
   "task_id": 2,
   "turn_around_time": 0
 }, {
   "x": 450,
-  "y": 150,
+  "y": 250,
   "name": "Cross Reference Checking",
   "reviewer_role": "Volume Editor",
   "task_id": 3,
   "turn_around_time": 0
 }, {
   "x": 300,
-  "y": 250,
-  "name": "Index Cleanup",
+  "y": 450,
+  "name": "Some long task name performed by someone about something",
   "reviewer_role": "Indexer",
   "task_id": 4,
   "turn_around_time": 0

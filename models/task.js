@@ -17,7 +17,11 @@ var app = app || {};
           },
           '.reviewer_role': {
             text: app.wrapText(this.get('reviewer_role'))
+          },
+          '.dates': {
+            text: app.wrapText('20-FEB')
           }
+
         }
       });
       app.graph.addCell(cell);

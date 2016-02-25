@@ -1,3 +1,4 @@
 .link-source {
-  fill: green;
+  stroke-width: 5px;
+  stroke: green;
 }
