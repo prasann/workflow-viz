@@ -3,6 +3,7 @@ var app = app || {};
 
 (function() {
   "use strict";
+
   app.TaskModel = Backbone.Model.extend({
     draw: function() {
       var cell = new joint.shapes.workflow.Task({
@@ -12,7 +13,10 @@ var app = app || {};
         },
         attrs: {
           '.name': {
-            text: this.get('name')
+            text: app.wrapText(this.get('name'))
+          },
+          '.reviewer_role': {
+            text: app.wrapText(this.get('reviewer_role'))
           }
         }
       });
