@@ -16,5 +16,4 @@ var app = app || {};
       return cell;
     }
   });
-  app.link = new app.LinkModel();
 })();

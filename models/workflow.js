@@ -5,18 +5,18 @@ var app = app || {};
     defaults: {
       drawnTasks: []
     },
+    initialize: function(){
+      $.when(app.tasks.deferred, app.links.deferred).then(this.draw);
+    },
     draw: function() {
-      var dbTasks = this.get('dbTasks');
-      var dbLinks = this.get('dbLinks');
-      //Compute X, Y
-      dbTasks.map(function(task) {
+      app.tasks.each(function(task) {
         task.draw();
       });
-      dbLinks.each(function(link) {
-        var source_task = dbTasks.findWhere({
+      app.links.each(function(link) {
+        var source_task = app.tasks.findWhere({
           task_id: link.get('source')
         });
-        var target_task = dbTasks.findWhere({
+        var target_task = app.tasks.findWhere({
           task_id: link.get('target')
         });
         link.draw(source_task.get('drawnTask'), target_task.get('drawnTask'));

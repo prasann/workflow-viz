@@ -21,5 +21,4 @@ var app = app || {};
       return cell;
     }
   });
-  app.task = new app.TaskModel();
 })();

@@ -18,24 +18,9 @@ function removeClass(className, $element) {
   $element.attr('class', _.without(classes, className).join(" "));
 }
 
-app.links.fetch({
-  url: '/data/links.json',
-  success: function(links) {
-    app.workflow.set('dbLinks', links);
-    app.tasks.fetch({
-      url: '/data/tasks.json',
-      success: function(tasks) {
-        app.workflow.set('dbTasks', tasks);
-        app.workflow.draw();
-      }
-    });
-  }
-});
-
-
 app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
   if (app.sourceTask) {
-    app.link.create(app.sourceTask.model, cellView.model)
+    app.link.draw(app.sourceTask.model, cellView.model)
     removeClass('link-source', $('.link-source'));
     app.sourceTask = undefined;
   } else {
