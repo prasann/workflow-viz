@@ -9,6 +9,9 @@ app.paper = new joint.dia.Paper({
 });
 
 app.wrapText = function(name) {
+  if(name === '' || name === undefined){
+    return name;
+  };
   return joint.util.breakText(name, {
     width: 210
   });
@@ -41,6 +44,11 @@ app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
 
 app.graph.on('change:position', function(cell) {
   var rect = g.rect(cell.getBBox());
+  if(!cell.isLink()){
+    var position = cell.position();
+    cell.get('dbTask').set('x', position.x);
+    cell.get('dbTask').set('y', position.y);
+  }
   if(app.graph.findModelsInArea(rect).length > 1){
     cell.set('position', cell.previous('position'));
   }
