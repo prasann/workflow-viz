@@ -5,23 +5,29 @@ var app = app || {};
   "use strict";
 
   app.TaskModel = Backbone.Model.extend({
-    initialize: function(){
-      _.bindAll(this,'update');
+    initialize: function() {
+      _.bindAll(this, 'update');
       this.on('change', this.update);
     },
-    toJSON: function(opts){
+    toJSON: function(opts) {
       return _.omit(this.attributes, ['drawnTask'])
     },
-    save: function(){
-      
+    save: function() {
+
     },
     draw: function() {
       var cell = new joint.shapes.workflow.Task({
         position: {
-          x: this.get('x'),
-          y: this.get('y')
+          x: this.get('position').x,
+          y: this.get('position').y
         },
         attrs: {
+          '.href_link': {
+            'xlink:href': 'http://jointjs.com',
+            'xlink:show': 'new',
+            text: 'Link123',
+            cursor: 'pointer'
+          },
           '.name': {
             text: app.wrapText(this.get('name'))
           },
@@ -38,10 +44,10 @@ var app = app || {};
       this.set('drawnTask', cell);
       return cell;
     },
-    update: function(){
+    update: function() {
       var drawnTask = this.get('drawnTask');
-      drawnTask.attr('.name/text',app.wrapText(this.get('name')));
-      drawnTask.attr('.dates/text',app.wrapText(this.get('dates')));
+      drawnTask.attr('.name/text', app.wrapText(this.get('name')));
+      drawnTask.attr('.dates/text', app.wrapText(this.get('dates')));
     }
   });
 })();

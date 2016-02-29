@@ -9,7 +9,7 @@ app.paper = new joint.dia.Paper({
 });
 
 app.wrapText = function(name) {
-  if(name === '' || name === undefined){
+  if (name === '' || name === undefined) {
     return name;
   };
   return joint.util.breakText(name, {
@@ -28,12 +28,16 @@ function removeClass(className, $element) {
 }
 
 app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
-  if(cellView.model.isLink()){
+  console.log();
+  if (cellView.model.isLink() ||
+    $(evt.target).closest('.href_link').length > 0) {
     return;
   }
   if (app.sourceTask) {
     var newLink = new app.LinkModel();
-    newLink.draw(app.sourceTask.model, cellView.model)
+    if (app.sourceTask != cellView) {
+      newLink.draw(app.sourceTask.model, cellView.model);
+    }
     removeClass('link-source', $('.link-source'));
     app.sourceTask = undefined;
   } else {
@@ -42,14 +46,27 @@ app.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
   }
 });
 
+app.createJSON = function() {
+  var cells = app.graph.getCells();
+  _.each(cells, function(cell) {
+    if (!cell.isLink()) {
+      var position = cell.position();
+      cell.get('dbTask').set('position', position);
+    } else {
+      var vertices = cell.get('vertices') || [];
+      cell.get('dbLink').set('vertices', vertices);
+    }
+  });
+  console.log(JSON.stringify(app.tasks.toJSON()));
+  console.log(JSON.stringify(app.links.toJSON()))
+}
+
 app.graph.on('change:position', function(cell) {
   var rect = g.rect(cell.getBBox());
-  if(!cell.isLink()){
-    var position = cell.position();
-    cell.get('dbTask').set('x', position.x);
-    cell.get('dbTask').set('y', position.y);
+  if (!cell.isLink()) {
+
   }
-  if(app.graph.findModelsInArea(rect).length > 1){
+  if (app.graph.findModelsInArea(rect).length > 1) {
     cell.set('position', cell.previous('position'));
   }
 })

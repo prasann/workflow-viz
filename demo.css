@@ -2,3 +2,6 @@
   stroke-width: 5px;
   stroke: green;
 }
+.element{
+  cursor: pointer;
+}

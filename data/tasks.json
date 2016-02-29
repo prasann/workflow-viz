@@ -1,33 +1,37 @@
 [{
-  "x": 455,
-  "y": 38,
+  "position": {
+    "x": 270,
+    "y": 31
+  },
   "name": "First proofs review",
   "reviewer_role": "Author",
   "task_id": 1,
-  "turn_around_time": 0,
-  "drawnTask": ""
+  "turn_around_time": 0
 }, {
-  "x": 2,
-  "y": 184,
+  "position": {
+    "x": 45,
+    "y": 147
+  },
   "name": "Draft Index Review",
   "reviewer_role": "Volume Editor",
   "task_id": 2,
-  "turn_around_time": 0,
-  "drawnTask": ""
+  "turn_around_time": 0
 }, {
-  "x": 563,
-  "y": 250,
+  "position": {
+    "x": 505,
+    "y": 146
+  },
   "name": "Cross Reference Checking",
   "reviewer_role": "Volume Editor",
   "task_id": 3,
-  "turn_around_time": 0,
-  "drawnTask": ""
+  "turn_around_time": 0
 }, {
-  "x": 100,
-  "y": 456,
+  "position": {
+    "x": 282,
+    "y": 388
+  },
   "name": "Some long task name performed by someone about something",
   "reviewer_role": "Indexer",
   "task_id": 4,
-  "turn_around_time": 0,
-  "drawnTask": ""
+  "turn_around_time": 0
 }]
